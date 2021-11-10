@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import CartWidget from '../CartWidget/CartWidget.js'
 import Container from 'react-bootstrap/Container';
 import isologo from '../../assets/Logo_sc/sg-isologo.png'
 import namelogo from '../../assets/Logo_sc/sg-namelogo.png'
@@ -42,6 +43,9 @@ return <header className="App-header">
         </Nav.Link>
         <Nav.Link eventKey={3} href="">
             <BsFacebook className="mx-1"/>
+        </Nav.Link>
+        <Nav.Link eventKey={4} href="">
+            <CartWidget className="mx-1"/>
         </Nav.Link>
         </Nav>
     </Navbar.Collapse>
