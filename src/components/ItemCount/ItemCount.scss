@@ -1,0 +1,13 @@
+@import '../../vars';
+
+.counter{
+    display: flex;
+    width: 100%;
+    // border: 2px solid $color-violeta;
+    // border-radius: 0.5em;
+    margin-bottom: 1em;
+}
+h3{
+    flex-grow: 1;
+    text-align: center;
+}
