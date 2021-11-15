@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState} from 'react'
 import './ItemCount.scss'
 import Button from 'react-bootstrap/Button'
 
@@ -14,14 +14,13 @@ function ItemCount({ title, stock }) {
     const alCarrito = () => {
         alert(`Agregaste ${counter} "${title}" al carrito`)
     }
-    
 
     return (
         <div className="d-flex flex-wrap justify-content-center">
             <div className="counter">
-                <Button variant="dark" onClick={quitarItem}>-</Button>
+                <Button variant="light" onClick={quitarItem}>-</Button>
                 <h3>{counter}</h3>
-                <Button variant="dark" onClick={agregarItem}>+</Button>
+                <Button variant="light" onClick={agregarItem}>+</Button>
             </div>
             <Button variant="dark" size="lg" onClick={alCarrito} className="alCarrito">Agregar al carrito</Button>
         </div>

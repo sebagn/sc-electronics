@@ -1,18 +1,39 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './ItemListContainer.scss'
-import ProductCard from '../ProductCard/ProductCard'
+import { pedirDatos } from '../../helpers/pedirDatos'
+import { ItemList } from '../ItemList/ItemList'
 
+const ItemListContainer = ({ greeting }) => {
 
+    const [loading, setLoading] = useState(false);
+    const [productos, setProductos] = useState([]);
 
-const ItemListContainer = ({greeting}) => {
+    useEffect(() => {
+
+        setLoading(true)
+        pedirDatos()
+            .then((resp) => {
+                setProductos(resp)
+            }
+            )
+            .catch((error) => {
+                console.log(error)
+            }
+
+            )
+            .finally(
+                setLoading(false)
+            )
+    }, [])
+
     return (
-        <div>
-            <h1>{greeting}</h1>
-            <p> Encontrá los mejores <del>productos de electronica</del> <strong>perritos</strong></p>
-            <ProductCard img="https://placedog.net/500" title="Perrito" stock="4" />
-            
-
-        </div>
+        <>
+            {
+                loading
+                    ? <h2>Cargando...</h2>
+                    : <ItemList productos={productos} />
+            }
+        </>
     )
 }
 

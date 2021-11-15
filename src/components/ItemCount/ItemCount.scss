@@ -3,11 +3,16 @@
 .counter{
     display: flex;
     width: 100%;
-    // border: 2px solid $color-violeta;
-    // border-radius: 0.5em;
+    border: 2px solid $color-azul;
+    border-radius: 0.5em;
     margin-bottom: 1em;
 }
 h3{
     flex-grow: 1;
     text-align: center;
+    margin-top: 0.25em;
+}
+.btn-light{
+    flex-grow: 0.2;
+    font-weight: 700;
 }
