@@ -9,7 +9,7 @@ export const ItemList = ({productos}) => {
             <h1>Bienvenido a SG Electronics</h1>
             <p> Encontrá los mejores <del>productos de electronica</del> <strong>perritos</strong></p>
             <Row>
-                {productos.map((prod) => <Item {...prod} />)}
+                {productos.map((prod) => <Item key={prod.id} {...prod} />)}
             </Row>
         
         </Container>
