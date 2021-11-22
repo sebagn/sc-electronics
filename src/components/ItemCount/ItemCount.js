@@ -1,9 +1,8 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import './ItemCount.scss'
 import Button from 'react-bootstrap/Button'
 
-function ItemCount({ title, stock }) {
-
+const ItemCount = ({ title, stock }) => {
     const [counter, setCounter] = useState(0);
     const agregarItem = () => {
         if (counter < stock) { setCounter(counter + 1) } else { alert(`No tenemos suficientes ${title}`) }

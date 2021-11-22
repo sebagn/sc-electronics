@@ -5,6 +5,8 @@
 !sg-isologo.png
 !sg-namelogo.png
 
+/src/data
+
 # dependencies
 /node_modules
 /.pnp

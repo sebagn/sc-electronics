@@ -1,33 +1,42 @@
 import React, { useState, useEffect } from 'react'
 import './ItemListContainer.scss'
-import { pedirDatos } from '../../helpers/pedirDatos'
 import { ItemList } from '../ItemList/ItemList'
+import { Loading } from '../Loading/Loading'
+import { useParams } from 'react-router'
 
-const ItemListContainer = ({ greeting }) => {
+const ItemListContainer = () => {
 
     const [loading, setLoading] = useState(false);
     const [productos, setProductos] = useState([]);
-    console.log(loading)
+    const { catId } = useParams();
 
     useEffect(() => {
-        
+
         setLoading(true)
-        pedirDatos()
-            .then((resp) => {
-                setProductos(resp)
+
+        const urlAPI = 'https://619a568d9022ea0017a7b119.mockapi.io/apitest/v1/stock';
+        fetch(urlAPI)
+            .then((res) => res.json())
+            .then((data) => {
+                if (!catId) {
+                    setProductos(data)
+                }
+                else {
+                    setProductos(data.filter(prod => prod.category === catId))
+                }
+
             })
-            .catch((error) => {
-                console.log(error)
-            })
-            .finally(() =>{
-                setLoading(false)
-            })
-    }, [])
+
+            .finally(setLoading(false));
+
+    }, [catId])
 
     return (
         <>
             {
-                loading ? <h2>Cargando...</h2> : <ItemList productos={productos} />
+                loading
+                    ? <Loading />
+                    : <ItemList productos={productos} />
             }
         </>
     )

@@ -1,0 +1,18 @@
+@import '../../vars';
+
+.detail{
+    padding: 2rem;
+    .detail_img{
+        border-radius: 25px;
+    }
+    .detail_body{
+        text-align: center;
+        .detail_title{
+            text-transform: uppercase;
+            color: $color-pri;
+        }
+    }
+    .detail_back{
+                margin: 1rem;
+    }
+}
