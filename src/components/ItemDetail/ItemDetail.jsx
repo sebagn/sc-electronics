@@ -1,7 +1,6 @@
 import React from 'react'
 import './ItemDetail.scss'
 import ItemCount from '../ItemCount/ItemCount'
-import { Stack } from 'react-bootstrap'
 import BackButton from '../BackButton/BackButton'
 
 const ItemDetail = ({producto}) => {

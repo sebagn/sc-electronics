@@ -42,7 +42,7 @@ const NavBar = () => {
                         <Nav.Link as={NavLink} to="/productos/perros"> Perros </Nav.Link>
                     </Nav>
                     <Nav>
-                        <Nav.Link eventKey={2}>
+                        <Nav.Link eventKey={2} href="https://www.instagram.com/scelectronics_/">
                             <BsInstagram className="mx-1" />
                         </Nav.Link>
                         <Nav.Link eventKey={3}>

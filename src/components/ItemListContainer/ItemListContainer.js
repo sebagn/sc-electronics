@@ -3,6 +3,7 @@ import './ItemListContainer.scss'
 import { ItemList } from '../ItemList/ItemList'
 import { Loading } from '../Loading/Loading'
 import { useParams } from 'react-router'
+import { pedirDatos } from '../../helpers/pedirDatos'
 
 const ItemListContainer = () => {
 
@@ -14,32 +15,25 @@ const ItemListContainer = () => {
 
         setLoading(true)
 
-        const urlAPI = 'https://619a568d9022ea0017a7b119.mockapi.io/apitest/v1/stock';
-        fetch(urlAPI)
-            .then((res) => res.json())
+        pedirDatos()
             .then((data) => {
-                if (!catId) {
-                    setProductos(data)
-                }
-                else {
-                    setProductos(data.filter(prod => prod.category === catId))
-                }
-
+                !catId
+                    ? setProductos(data)
+                    : setProductos(data.filter(prod => prod.category === catId))
             })
+        .finally(setLoading(false));
 
-            .finally(setLoading(false));
+}, [catId])
 
-    }, [catId])
-
-    return (
-        <>
-            {
-                loading
-                    ? <Loading />
-                    : <ItemList productos={productos} />
-            }
-        </>
-    )
+return (
+    <>
+        {
+            loading
+                ? <Loading />
+                : <ItemList productos={productos} />
+        }
+    </>
+)
 }
 
 export default ItemListContainer
