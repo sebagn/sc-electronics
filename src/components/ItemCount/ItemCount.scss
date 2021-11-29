@@ -1,8 +1,11 @@
 @import '../../vars';
-
+.counter__wrapper{
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+}
 .counter{
     display: flex;
-    width: 100%;
     border: 2px solid $color-pri;
     border-radius: 0.5em;
     margin-bottom: 1em;

@@ -1,23 +1,54 @@
-import React from 'react'
-import './ItemDetail.scss'
-import ItemCount from '../ItemCount/ItemCount'
-import BackButton from '../BackButton/BackButton'
+import React, { useContext, useState } from "react";
+import "./ItemDetail.scss";
+import ItemCount from "../ItemCount/ItemCount";
+import BackButton from "../BackButton/BackButton";
+import { Link } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 
-const ItemDetail = ({producto}) => {
-    const {img, title, desc, price, stock} = producto
+const ItemDetail = ({ producto }) => {
+  const { id, img, title, desc, price, stock } = producto;
 
-    return (
-        <article className="detail row">
-            <img className="detail_img col-md-6" src={img} alt={title} />
-            <div className="detail_body col-md-6">
-                <h2 className="detail_title"> {title} </h2>
-                <p className="detail_p"> {desc}</p>
-                <h3 className="detail_subtitle"> ${price} </h3>
-                <ItemCount title={title} stock={stock} />
-                <BackButton />
-            </div>
-        </article>
-    )
-}
+  const { agregarAlCarrito, isInCart } = useContext(CartContext);
 
-export default ItemDetail
+  const [cantidad, setCantidad] = useState(0);
+
+  const handleAlCarrito = () => {
+    if (cantidad > 0) {
+      agregarAlCarrito({
+        id,
+        title,
+        price,
+        img,
+        cantidad,
+      });
+    }
+  };
+
+  return (
+    <article className="detail row">
+      <img className="detail_img col-md-6" src={img} alt={title} />
+      <div className="detail_body col-md-6">
+        <h2 className="detail_title"> {title} </h2>
+        <p className="detail_p"> {desc}</p>
+        <h3 className="detail_subtitle"> ${price} </h3>
+
+        {!isInCart(id) ? (
+          <ItemCount
+            stock={stock}
+            cantidad={cantidad}
+            setCantidad={setCantidad}
+            onAdd={handleAlCarrito}
+          />
+        ) : (
+          <Link to="/cart" className="btn btn-success">
+            {" "}
+            Terminar compra{" "}
+          </Link>
+        )}
+        <BackButton />
+      </div>
+    </article>
+  );
+};
+
+export default ItemDetail;
