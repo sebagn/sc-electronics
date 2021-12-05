@@ -32,19 +32,21 @@ const ItemDetail = ({ producto }) => {
         <p className="detail_p"> {desc}</p>
         <h3 className="detail_subtitle"> ${price} </h3>
 
-        {!isInCart(id) ? (
-          <ItemCount
-            stock={stock}
-            cantidad={cantidad}
-            setCantidad={setCantidad}
-            onAdd={handleAlCarrito}
-          />
-        ) : (
-          <Link to="/cart" className="btn btn-success">
-            {" "}
-            Terminar compra{" "}
-          </Link>
-        )}
+        {
+          !isInCart(id) 
+            ?
+              <ItemCount
+                stock={stock}
+                cantidad={cantidad}
+                setCantidad={setCantidad}
+                onAdd={handleAlCarrito}
+              />
+            : 
+              <Link to="/cart" className="button-pri btn btn-success btn-lg">
+                {" "}
+                Terminar compra{" "}
+              </Link>
+        }
         <BackButton />
       </div>
     </article>

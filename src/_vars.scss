@@ -1,3 +1,29 @@
 $color-pri: #6B3AE0;
+$color-pri-hover: #4c18c5;
+$color-pri-disabled: #8470b1;
 $color-sec: #0A0A63;
 $color-ter: #F0F0F0;
+
+.button-pri{
+    background-color: $color-pri;
+    color: white;
+    &:hover{
+        background-color: $color-pri-hover;
+        color: white;
+        &:disabled{
+            background-color: $color-pri-disabled;
+        }
+    }
+}
+.button-outline-pri{
+    background-color: white;
+    color: $color-pri-hover;
+    border: $color-pri-hover 1px solid;
+    &:hover{    
+        background-color: $color-pri-hover;
+        color: white;
+        &:disabled{
+            background-color: $color-ter;
+        }
+    }
+}

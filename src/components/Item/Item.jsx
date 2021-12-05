@@ -11,7 +11,7 @@ export const Item = ({ img, title, price, id }) => {
                 <Card.Title className="title"> {title} </Card.Title>
                 <Card.Subtitle className="subtitle"> ${price} </Card.Subtitle>
             </Card.Body>
-            <Link to={`/detail/${id}`} className="button btn btn-primary">Ver mas</Link>
+            <Link to={`/detail/${id}`} className="button-pri btn">Ver mas</Link>
         </Card>
     )
 }

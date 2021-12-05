@@ -8,10 +8,11 @@
     .subtitle{
         text-align: center;
     }
-    .button{
+    .button-pri{
         align-self: center;
         width: 50%;
         margin-bottom: 1rem;
         background-color: $color-pri;
+        color: white;
     }
 }

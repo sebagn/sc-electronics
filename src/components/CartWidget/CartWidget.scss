@@ -1,4 +1,9 @@
 .cart{
-    transform: scale(2,2) translate(1em);
-    
+    transform: scale(2,2) translate(0.5em);
+}
+.badge{
+    transform: translate(1em,-1em);
+}
+.hidden{
+    visibility: hidden;
 }
