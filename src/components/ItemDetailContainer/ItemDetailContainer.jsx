@@ -22,7 +22,8 @@ const ItemDetailContainer = () => {
             const itemRef = doc (db, `productos/${itemId}`)
             try{
                 const docSnap = await getDoc(itemRef)
-                setProducto(docSnap.data())
+                setProducto({...docSnap.data(), id: docSnap.id})
+
             }
             finally{setLoading(false)};
         }

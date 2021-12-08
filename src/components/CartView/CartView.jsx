@@ -9,7 +9,6 @@ const CartView = () => {
 	const handleVaciar = () => {
 		vaciarCarrito();
 	};
-	console.log(totalPrecio());
 
 	return (
 		<div className="m-3">
@@ -26,7 +25,7 @@ const CartView = () => {
 						<Button variant="outline-danger" onClick={handleVaciar}>
 							Vaciar carrito
 						</Button>
-						<Link to="/" className="button-outline-pri btn btn-lg m-3">
+						<Link to="/checkout" className="button-outline-pri btn btn-lg m-3">
 							Finalizar compra
 						</Link>
 					</>
