@@ -3,24 +3,32 @@ import './ItemDetailContainer.scss'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import { Loading } from '../Loading/Loading'
 import { useParams } from 'react-router'
+import { db } from '../../firebase/config'
+import { doc, getDoc } from 'firebase/firestore/lite'
 
 const ItemDetailContainer = () => {
 
     const [ loading, setLoading ] = useState(false);
     const [ producto, setProducto ] = useState([]);
     const {itemId} = useParams()
+    
+    
 
     useEffect(() => {
 
         setLoading(true)
-        const urlAPI = 'https://619a568d9022ea0017a7b119.mockapi.io/apitest/v1/stock';
-        fetch(urlAPI)
-            .then((res) => res.json())
-            .then(data => {
-              setProducto( data.find (prod => prod.id === Number(itemId)))
-            })
 
-            .finally(setLoading(false));
+        const fetchdata = async () => {
+            const itemRef = doc (db, `productos/${itemId}`)
+            try{
+                const docSnap = await getDoc(itemRef)
+                setProducto(docSnap.data())
+            }
+            finally{setLoading(false)};
+        }
+        
+        fetchdata()    
+        
     }, [itemId])
 
     

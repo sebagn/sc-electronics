@@ -65,9 +65,11 @@ const NavBar = () => {
 							<Nav.Link eventKey={3}>
 								<BsFacebook className="mx-1" />
 							</Nav.Link>
-							<Nav.Link as={NavLink} to="/cart" eventKey={4}>
-								<CartWidget className="mx-1" />
-							</Nav.Link>
+							{carrito.length > 0 && 
+								<Nav.Link as={NavLink} to="/cart" eventKey={4}>
+									<CartWidget className="mx-1" />
+								</Nav.Link>
+							}
 						</Nav>
 					</Navbar.Collapse>
 				</Container>

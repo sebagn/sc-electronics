@@ -1,39 +1,42 @@
-import React, { useState, useEffect } from 'react'
-import './ItemListContainer.scss'
-import { ItemList } from '../ItemList/ItemList'
-import { Loading } from '../Loading/Loading'
-import { useParams } from 'react-router'
-import { pedirDatos } from '../../helpers/pedirDatos'
+import React, { useState, useEffect } from "react";
+import "./ItemListContainer.scss";
+import { ItemList } from "../ItemList/ItemList";
+import { Loading } from "../Loading/Loading";
+import { useParams } from "react-router";
+import { collection, getDocs, query, where } from "firebase/firestore/lite";
+import { db } from "../../firebase/config";
 
 const ItemListContainer = () => {
+  const [loading, setLoading] = useState(false);
+  const [productos, setProductos] = useState([]);
+  const { catId } = useParams();
 
-    const [loading, setLoading] = useState(false);
-    const [productos, setProductos] = useState([]);
-    const { catId } = useParams();
+  
 
-    useEffect(() => {
+  useEffect(() => {
+    setLoading(true);
 
-        setLoading(true)
+    async function fetchdata() {
+      try {
+      const productosRef = collection(db, "productos");
+      const q = catId ? query(productosRef, where("category", "==", catId)) : productosRef;
+        const collectionSnap = await getDocs(q);
+        const items = collectionSnap.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setProductos(items);
+      } catch (e) {
+        console.error(e);
+      } finally {
+        setLoading(false);
+      }
+    }
 
-        pedirDatos()
-            .then((data) => {
-                !catId
-                    ? setProductos(data)
-                    : setProductos(data.filter(prod => prod.category === catId))
-            })
-        .finally(setLoading(false));
+    fetchdata();
+  }, [catId]);
 
-}, [catId])
+  return <>{loading ? <Loading /> : <ItemList productos={productos} />}</>;
+};
 
-return (
-    <>
-        {
-            loading
-                ? <Loading />
-                : <ItemList productos={productos} />
-        }
-    </>
-)
-}
-
-export default ItemListContainer
+export default ItemListContainer;
