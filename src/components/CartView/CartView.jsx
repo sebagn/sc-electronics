@@ -18,7 +18,7 @@ const CartView = () => {
 				?
 					<>
 						<section>
-							{carrito.map((prod) => (<CartViewItem prod={prod} />))}
+							{carrito.map((prod) => (<CartViewItem key={prod.id} prod={prod} />))}
 						</section>
 						<h3>Total a pagar: ${totalPrecio()}</h3>
 

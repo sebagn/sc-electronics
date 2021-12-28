@@ -11,8 +11,6 @@ const ItemListContainer = () => {
   const [productos, setProductos] = useState([]);
   const { catId } = useParams();
 
-  
-
   useEffect(() => {
     setLoading(true);
 

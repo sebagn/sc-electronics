@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 
 export const Item = ({ img, title, price, id }) => {
     return (
-        <Card style={{ width: '18rem' }} className="card m-3">
-            <Card.Img variant="top" src={img} />
+        <Card className="card m-3">
+            <Card.Img variant="top" className="mt-2" src={img} />
             <Card.Body>
                 <Card.Title className="title"> {title} </Card.Title>
                 <Card.Subtitle className="subtitle"> ${price} </Card.Subtitle>
