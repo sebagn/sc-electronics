@@ -3,7 +3,7 @@ E-commerce de articulos electronicos "SC Electronics" construido con create-reac
 
 Se utilizó React, Bootstrap, React Icons, Firebase
 
+https://sc-electronics.netlify.app/
 
-# Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
