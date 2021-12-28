@@ -46,13 +46,13 @@ const NavBar = () => {
 								{" "}
 								Productos{" "}
 							</Nav.Link>
-							<Nav.Link as={NavLink} to="/productos/gatos">
+							<Nav.Link as={NavLink} to="/productos/celulares">
 								{" "}
-								Gatos{" "}
+								Celulares{" "}
 							</Nav.Link>
-							<Nav.Link as={NavLink} to="/productos/perros">
+							<Nav.Link as={NavLink} to="/productos/cargadores">
 								{" "}
-								Perros{" "}
+								Cargadores{" "}
 							</Nav.Link>
 						</Nav>
 						<Nav>
