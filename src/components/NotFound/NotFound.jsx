@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const NotFound = () => {
     return (
-        <div class="info">
+        <div className="info">
             <h1> 404 </h1>
             <h2>
                 No encontramos la pagina que buscas

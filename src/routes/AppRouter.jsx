@@ -15,6 +15,7 @@ export const AppRouter = () => {
 		{ path: "/detail/:itemId", element: <ItemDetailContainer /> },
 		{ path: "/cart", element: <CartView /> },
 		{ path: "/checkout", element: <Checkout /> },
+		{ path: "/notfound", element: <NotFound /> },
 		{ path: "*", element: <NotFound /> },
 	]);
 

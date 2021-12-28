@@ -1,47 +1,44 @@
-import React, { useState, useEffect } from 'react'
-import './ItemDetailContainer.scss'
-import ItemDetail from '../ItemDetail/ItemDetail'
-import { Loading } from '../Loading/Loading'
-import { useParams } from 'react-router'
-import { db } from '../../firebase/config'
-import { doc, getDoc } from 'firebase/firestore/lite'
+import React, { useState, useEffect } from "react";
+import "./ItemDetailContainer.scss";
+import ItemDetail from "../ItemDetail/ItemDetail";
+import { Loading } from "../Loading/Loading";
+import { useParams } from "react-router";
+import { db } from "../../firebase/config";
+import { doc, getDoc } from "firebase/firestore/lite";
+import NotFound from '../NotFound/NotFound'
 
 const ItemDetailContainer = () => {
+  const [loading, setLoading] = useState(false);
+  const [producto, setProducto] = useState([]);
+  const { itemId } = useParams();
 
-    const [ loading, setLoading ] = useState(false);
-    const [ producto, setProducto ] = useState([]);
-    const {itemId} = useParams()
-    
-    
+  useEffect(() => {
+    setLoading(true);
 
-    useEffect(() => {
+    const fetchdata = async () => {
+      const itemRef = doc(db, `productos/${itemId}`);
+      try {
+        const docSnap = await getDoc(itemRef);
+        setProducto({ ...docSnap.data(), id: docSnap.id });
+      } finally {
+        setLoading(false);
+      }
+    };
 
-        setLoading(true)
+    fetchdata();
+  }, [itemId]);
 
-        const fetchdata = async () => {
-            const itemRef = doc (db, `productos/${itemId}`)
-            try{
-                const docSnap = await getDoc(itemRef)
-                setProducto({...docSnap.data(), id: docSnap.id})
+  return (
+    <>
+      {loading ? (
+        <Loading />
+      ) : Object.keys(producto).length === 1 ? (
+        <NotFound />
+      ) : (
+        <ItemDetail producto={producto} />
+      )}
+    </>
+  );
+};
 
-            }
-            finally{setLoading(false)};
-        }
-        
-        fetchdata()    
-        
-    }, [itemId])
-
-    
-    return (
-        <>
-            {
-                loading
-                    ? <Loading />
-                    : <ItemDetail producto={producto} />
-            }
-        </>
-    )
-}
-
-export default ItemDetailContainer
+export default ItemDetailContainer;
