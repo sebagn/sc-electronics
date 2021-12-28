@@ -1,16 +1,18 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
 import "./Carrusel.scss";
+import carousel1 from '../../assets/imagenes/carousel1.jpeg';
+import carousel2 from '../../assets/imagenes/carousel2.jpg';
+import carousel3 from '../../assets/imagenes/carousel3.jpg';
 
 const Carrusel = () => {
   return (
     <Carousel className="carrusel">
-      
       <Carousel.Item>
         <img
           className="carrusel d-block w-100"
-          src="https://placekitten.com/499/332"
-          alt="First slide"
+          src={carousel1}
+          alt="tienda de sc-electronics"
         />
         <Carousel.Caption>
           <h1>Bienvenido a SC Electronics</h1>
@@ -20,15 +22,15 @@ const Carrusel = () => {
       <Carousel.Item>
         <img
           className="carrusel d-block w-100"
-          src="https://placekitten.com/499/332"
-          alt="Second slide"
+          src={carousel2}
+          alt="smartwatch"
         />
       </Carousel.Item>
       <Carousel.Item>
         <img
           className="carrusel d-block w-100"
-          src="https://placekitten.com/499/332"
-          alt="Third slide"
+          src={carousel3}
+          alt="headset y tablet"
         />
       </Carousel.Item>
     </Carousel>
