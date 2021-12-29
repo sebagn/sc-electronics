@@ -30,13 +30,11 @@ const ItemDetailContainer = () => {
 
   return (
     <>
-      {loading ? (
-        <Loading />
-      ) : Object.keys(producto).length === 1 ? (
-        <NotFound />
-      ) : (
-        <ItemDetail producto={producto} />
-      )}
+      {loading ? <Loading /> : (
+        Object.keys(producto).length === 1 
+          ? <NotFound />
+          : <ItemDetail producto={producto} />
+        )}
     </>
   );
 };
