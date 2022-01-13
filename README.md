@@ -5,6 +5,6 @@ Se utilizó React, Bootstrap, React Icons, Firebase
 
 https://sc-electronics.netlify.app/
 
-![image](https://user-images.githubusercontent.com/87787750/149400934-aea58b71-141c-4ad3-985e-c9ee64c47536.png)
+![sc - electronics](https://user-images.githubusercontent.com/87787750/149401061-70fbb1ba-a821-414f-a32a-d11b3ab5df59.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
