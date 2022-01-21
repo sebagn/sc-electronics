@@ -18,7 +18,7 @@ const CartViewItem = ({ prod }) => {
 			</div>
 			<div className="col-auto">
 				<img
-					src={prod.img}
+					src={`https://via.placeholder.com/160?text=${prod.title}`}
 					alt={prod.title}
 					className="cartView__img mb-2"
 				/>

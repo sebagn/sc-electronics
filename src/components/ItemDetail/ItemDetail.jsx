@@ -26,7 +26,7 @@ const ItemDetail = ({ producto }) => {
 
   return (
     <article className="detail row">
-      <img className="detail_img col-md-6" src={img} alt={title} />
+      <img className="detail_img col-md-6" src={`https://via.placeholder.com/160?text=${title}`} alt={title} />
       <div className="detail_body col-md-6">
         <h2 className="detail_title"> {title} </h2>
         <p className="detail_p"> {desc}</p>

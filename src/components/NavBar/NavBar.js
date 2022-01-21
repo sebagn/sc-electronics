@@ -1,81 +1,82 @@
 import React, { useContext } from "react";
-import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import CartWidget from "../CartWidget/CartWidget.js";
-import Container from "react-bootstrap/Container";
 import isologo from "../../assets/Logo_sc/sg-isologo.png";
 import namelogo from "../../assets/Logo_sc/sg-namelogo.png";
 import { BsInstagram } from "react-icons/bs";
 import { BsFacebook } from "react-icons/bs";
 import { CartContext } from "../../context/CartContext.js";
+import "./NavBar.scss";
+import { NavDropdown } from "react-bootstrap";
+import {data} from '../../data/lista'
 
 const NavBar = () => {
-	const { carrito } = useContext(CartContext);
+    const { carrito } = useContext(CartContext);
+    
+    let result = data.map(item => {
+      return item.category.toUpperCase()
+    })
+    let result2 = result.filter((item, index) => {
+      return result.indexOf(item) === index;
+    })
 
-	return (
-		<header className="App-header">
-			<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-				<Container>
-					<Navbar.Brand>
-						<Nav.Link as={NavLink} to="/">
-							<img
-								alt="sg isologo"
-								src={isologo}
-								width="auto"
-								height="40"
-								className="d-inline-block align-top"
-							/>{" "}
-							<img
-								alt="sg electronics"
-								src={namelogo}
-								width="auto"
-								height="40"
-								className="d-inline-block"
-							/>{" "}
-						</Nav.Link>
-					</Navbar.Brand>
-					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
-					<Navbar.Collapse id="responsive-navbar-nav">
-						<Nav className="me-auto">
-							<Nav.Link as={NavLink} to="/">
-								{" "}
-								Home{" "}
-							</Nav.Link>
-							<Nav.Link as={NavLink} to="/productos">
-								{" "}
-								Productos{" "}
-							</Nav.Link>
-							<Nav.Link as={NavLink} to="/productos/celulares">
-								{" "}
-								Celulares{" "}
-							</Nav.Link>
-							<Nav.Link as={NavLink} to="/productos/cargadores">
-								{" "}
-								Cargadores{" "}
-							</Nav.Link>
-						</Nav>
-						<Nav>
-							<Nav.Link
-								eventKey={2}
-								href="https://www.instagram.com/scelectronics_/"
-							>
-								<BsInstagram className="mx-1" />
-							</Nav.Link>
-							<Nav.Link eventKey={3}>
-								<BsFacebook className="mx-1" />
-							</Nav.Link>
-							{carrito.length > 0 && 
-								<Nav.Link as={NavLink} to="/cart" eventKey={4}>
-									<CartWidget className="mx-1" />
-								</Nav.Link>
-							}
-						</Nav>
-					</Navbar.Collapse>
-				</Container>
-			</Navbar>
-		</header>
-	);
+    return (
+        <Nav className="App-header container-fluid">
+            <div className="navMenu">
+                <Link to="/">
+                    <img
+                        alt="sg isologo"
+                        src={isologo}
+                        width="auto"
+                        height="30"
+                        className="d-inline-block align-top"
+                    />
+                    <img
+                        alt="sg electronics"
+                        src={namelogo}
+                        width="auto"
+                        height="30"
+                        className="d-inline-block"
+                    />
+                </Link>
+            </div>
+            {/* <div className="navMenu">
+                <Link className="navLink" to="/">
+                    Home
+                </Link>
+            </div> */}
+
+            <NavDropdown
+                id="nav-dropdown-categorias"
+                title="Categorias"
+                menuVariant="dark"
+            >
+    
+              {result2.map(e => (
+                <NavDropdown.Item key={e.index}>
+                    <Link className="navLink" to={`/productos/${e}`}>
+                        {e}
+                    </Link>
+                </NavDropdown.Item>
+              ))}
+              
+            </NavDropdown>
+
+            {/* <Nav.Link  eventKey={2}  href="https://www.instagram.com/scelectronics_/"  > <BsInstagram className="icons" />  </Nav.Link>  <Nav.Link eventKey={3}> <BsFacebook className="icons" />   </Nav.Link> */}
+
+            {carrito.length > 0 && (
+              <Nav.Link
+              className="icons"
+              as={NavLink}
+              to="/cart"
+              eventKey={4}
+              >
+                    <CartWidget />
+                </Nav.Link>
+            )}
+        </Nav>
+    );
 };
 
 export default NavBar;

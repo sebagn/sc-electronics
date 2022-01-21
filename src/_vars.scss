@@ -6,22 +6,22 @@ $color-ter: #F0F0F0;
 
 .button-pri{
     background-color: $color-pri;
-    color: white;
+    color: $color-ter;
     &:hover{
         background-color: $color-pri-hover;
-        color: white;
+        color: $color-ter;
         &:disabled{
             background-color: $color-pri-disabled;
         }
     }
 }
 .button-outline-pri{
-    background-color: white;
+    background-color: $color-ter;
     color: $color-pri-hover;
     border: $color-pri-hover 1px solid;
     &:hover{    
         background-color: $color-pri-hover;
-        color: white;
+        color: $color-ter;
         &:disabled{
             background-color: $color-ter;
         }
