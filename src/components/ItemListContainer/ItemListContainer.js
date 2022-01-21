@@ -26,7 +26,7 @@ const ItemListContainer = () => {
         const productosRef = collection(db, "productos");
         const q = catId
           ? query(productosRef, where("category", "==", catId.toUpperCase()))
-          : query(productosRef);
+          : query(productosRef, limit(10));
         const collectionSnap = await getDocs(q);
         const items = collectionSnap.docs.map((doc) => ({
           id: doc.id,

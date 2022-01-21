@@ -1,25 +1,37 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Nav from "react-bootstrap/Nav";
 import { Link, NavLink } from "react-router-dom";
 import CartWidget from "../CartWidget/CartWidget.js";
 import isologo from "../../assets/Logo_sc/sg-isologo.png";
 import namelogo from "../../assets/Logo_sc/sg-namelogo.png";
-import { BsInstagram } from "react-icons/bs";
-import { BsFacebook } from "react-icons/bs";
+// import { BsInstagram } from "react-icons/bs";
+// import { BsFacebook } from "react-icons/bs";
 import { CartContext } from "../../context/CartContext.js";
 import "./NavBar.scss";
 import { NavDropdown } from "react-bootstrap";
-import {data} from '../../data/lista'
+import { collection, getDocs } from "firebase/firestore/lite";
+import { db } from "../../firebase/config";
 
 const NavBar = () => {
     const { carrito } = useContext(CartContext);
-    
-    let result = data.map(item => {
-      return item.category.toUpperCase()
-    })
-    let result2 = result.filter((item, index) => {
-      return result.indexOf(item) === index;
-    })
+    const [catList, setCatList] = useState([]);
+
+    useEffect(() => {
+        async function fetchdata() {
+            const productosRef = collection(db, "productos");
+
+            const collectionSnap = await getDocs(productosRef);
+            const itemsCategory = collectionSnap.docs.map((doc) => {
+                return doc.data().category;
+            });
+            let result2 = itemsCategory.filter((item, index) => {
+                return itemsCategory.indexOf(item) === index;
+            });
+            setCatList(result2);
+        }
+
+        fetchdata();
+    }, []);
 
     return (
         <Nav className="App-header container-fluid">
@@ -52,26 +64,27 @@ const NavBar = () => {
                 title="Categorias"
                 menuVariant="dark"
             >
-    
-              {result2.map(e => (
-                <NavDropdown.Item key={e.index}>
-                    <Link className="navLink" to={`/productos/${e}`}>
-                        {e}
-                    </Link>
-                </NavDropdown.Item>
-              ))}
-              
+                {catList.map((e) => (
+                    <NavDropdown.Item key={e.index}>
+                        <Link
+                            className="navLink"
+                            to={`/productos/${e}`}
+                        >
+                            {e}
+                        </Link>
+                    </NavDropdown.Item>
+                ))}
             </NavDropdown>
 
             {/* <Nav.Link  eventKey={2}  href="https://www.instagram.com/scelectronics_/"  > <BsInstagram className="icons" />  </Nav.Link>  <Nav.Link eventKey={3}> <BsFacebook className="icons" />   </Nav.Link> */}
 
             {carrito.length > 0 && (
-              <Nav.Link
-              className="icons"
-              as={NavLink}
-              to="/cart"
-              eventKey={4}
-              >
+                <Nav.Link
+                    className="icons"
+                    as={NavLink}
+                    to="/cart"
+                    eventKey={4}
+                >
                     <CartWidget />
                 </Nav.Link>
             )}
