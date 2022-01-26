@@ -1,10 +1,40 @@
-# Proyecto de e-commerce
-E-commerce de articulos electronicos "SC Electronics" construido con create-react-app
+<h1 align="center">Welcome to sg-electronica-app 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
+</p>
 
-Se utilizó React, Bootstrap, React Icons, Firebase
+> Base de web ecommerce para tienda de electronica &#34;sc-electronics&#34; en Santiago del Estero. Creado a traves de Create-React-App
 
-https://sc-electronics.netlify.app/
+### 🏠 [Homepage](sc-electronics.netlify.app/)
 
-![sc - electronics](https://user-images.githubusercontent.com/87787750/149401061-70fbb1ba-a821-414f-a32a-d11b3ab5df59.png)
+## Install
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+```sh
+npm install
+```
+
+## Usage
+
+```sh
+npm run start
+```
+
+## Run tests
+
+```sh
+npm run test
+```
+
+## Author
+
+👤 **Sebastian Garcia Nallar**
+
+* Website: https://www.linkedin.com/in/sebastiangarcianallar/
+* Github: [@sebagn](https://github.com/sebagn)
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

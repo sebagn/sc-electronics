@@ -4,16 +4,18 @@ import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom";
 import { generarOrden } from "./generarOrden";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const Checkout = () => {
   const { carrito, totalPrecio, vaciarCarrito } = useContext(CartContext);
+  const [emailValidation, setEmailValidation] = useState(true)
 
   const form = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     carrito.length !== 0
-      ? generarOrden(form, carrito, totalPrecio, vaciarCarrito)
+      ? generarOrden(form, carrito, totalPrecio, vaciarCarrito, setEmailValidation)
       : Swal.fire({
           icon: "error",
           title: "No hay productos en el carrito",
@@ -60,6 +62,7 @@ const Checkout = () => {
           name="emailConfirm"
           required
         />
+        {!emailValidation && <span style={{color: 'red'}}>Los emails no coinciden</span>}
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formGroupPaymentMethod">
@@ -79,7 +82,7 @@ const Checkout = () => {
       </Form.Group>
 
       <Button variant="primary" type="submit" disabled={carrito.length === 0}>
-        Submit
+        Enviar compra
       </Button>
       <div className="d-flex	justify-content-center">
         <Link to="/" className="button-pri btn btn-lg m-3">

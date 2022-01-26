@@ -20,6 +20,7 @@ const CartView = () => {
 						<section>
 							{carrito.map((prod) => (<CartViewItem key={prod.id} prod={prod} />))}
 						</section>
+						
 						<h3>Total a pagar: ${totalPrecio()}</h3>
 
 						<Button variant="outline-danger" onClick={handleVaciar}>

@@ -2,7 +2,7 @@ import React from "react";
 import "./ItemCount.scss";
 import Button from "react-bootstrap/Button";
 
-const ItemCount = ({ title, stock, cantidad, setCantidad, onAdd }) => {
+const ItemCount = ({ stock, cantidad, setCantidad, onAdd }) => {
 	const agregarItem = () => {
 		cantidad < stock && setCantidad(cantidad + 1);
 	};

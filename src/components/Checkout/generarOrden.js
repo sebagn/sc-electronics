@@ -11,7 +11,7 @@ import {
 import { db } from "../../firebase/config";
 import Swal from "sweetalert2";
 
-export const generarOrden = async (form, carrito, totalPrecio, vaciarCarrito) => {
+export const generarOrden = async (form, carrito, totalPrecio, vaciarCarrito, setEmailValidation) => {
   const formData = new FormData(form.current);
   // valida los emails (el resto de las validaciones las hace el form automaticamente)
   if (formData.get("email") === formData.get("emailConfirm")) {
@@ -28,7 +28,7 @@ export const generarOrden = async (form, carrito, totalPrecio, vaciarCarrito) =>
       payment: formData.get("paymentMethod"),
       date: Timestamp.fromDate(new Date()),
     };
-
+    
     // fecth de los productos en el carrito
     const orderRef = collection(db, "orders");
     const productosRef = collection(db, "productos");
@@ -74,6 +74,10 @@ export const generarOrden = async (form, carrito, totalPrecio, vaciarCarrito) =>
       });
     }
 
+    setEmailValidation(true)
     form.current.reset();
   } 
+  else {
+    setEmailValidation(false)
+  }
 };
