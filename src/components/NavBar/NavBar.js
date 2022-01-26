@@ -4,8 +4,6 @@ import { Link, NavLink } from "react-router-dom";
 import CartWidget from "../CartWidget/CartWidget.js";
 import isologo from "../../assets/Logo_sc/sg-isologo.png";
 import namelogo from "../../assets/Logo_sc/sg-namelogo.png";
-// import { BsInstagram } from "react-icons/bs";
-// import { BsFacebook } from "react-icons/bs";
 import { CartContext } from "../../context/CartContext.js";
 import "./NavBar.scss";
 import { NavDropdown } from "react-bootstrap";
@@ -53,11 +51,6 @@ const NavBar = () => {
                     />
                 </Link>
             </div>
-            {/* <div className="navMenu">
-                <Link className="navLink" to="/">
-                    Home
-                </Link>
-            </div> */}
 
             <NavDropdown
                 id="nav-dropdown-categorias"
@@ -75,8 +68,6 @@ const NavBar = () => {
                     </NavDropdown.Item>
                 ))}
             </NavDropdown>
-
-            {/* <Nav.Link  eventKey={2}  href="https://www.instagram.com/scelectronics_/"  > <BsInstagram className="icons" />  </Nav.Link>  <Nav.Link eventKey={3}> <BsFacebook className="icons" />   </Nav.Link> */}
 
             {carrito.length > 0 && (
                 <Nav.Link

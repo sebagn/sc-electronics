@@ -11,3 +11,10 @@
 .cartView__body {
   min-width: 20vw;
 }
+.cartView__counter{
+    display: flex;
+    border: 2px solid $color-pri;
+    border-radius: 0.5em;
+    margin-bottom: 1em;
+	width: 150px;
+}

@@ -19,7 +19,6 @@ const ItemListContainer = () => {
 
   useEffect(() => {
     setLoading(true);
-    console.log(catId);
 
     async function fetchdata() {
       try {
@@ -42,7 +41,6 @@ const ItemListContainer = () => {
 
     fetchdata();
   }, [catId]);
-  console.log(productos);
 
   return <>{loading ? <Loading /> : <ItemList productos={productos} />}</>;
 };

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 
 const ItemDetail = ({ producto }) => {
-  const { id, img, title, desc, price, stock } = producto;
+  const { id,  title, desc, price, stock } = producto;
 
   const { agregarAlCarrito, isInCart } = useContext(CartContext);
 
@@ -18,8 +18,8 @@ const ItemDetail = ({ producto }) => {
         id,
         title,
         price,
-        img,
         cantidad,
+        stock
       });
     }
   };
